@@ -2,6 +2,8 @@ import axios from "axios"
 
 import { SET_APPOINTMENT, APPOINTMENT_ERROR, RESET_APPOINTMENT } from "./types"
 
+import {base_url} from "../utils/backendUrl"
+
 const getAppointmentsForMultipleDates = async (numOfRequests, daysOfDataInEachReq, url) => {
 
   let appointments = {
@@ -47,14 +49,14 @@ const getAppointmentsForMultipleDates = async (numOfRequests, daysOfDataInEachRe
 }
 
 const makeReqByPin = async (daysOfDataInEachReq, numOfRequests, pincode) => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_API}/api/v2/appointment/sessions/public/calendarByPin?pincode=${pincode}&`
+  const url = `${base_url}/api/v2/appointment/sessions/public/calendarByPin?pincode=${pincode}&`
   const appointments = await getAppointmentsForMultipleDates(numOfRequests, daysOfDataInEachReq, url)
 
   return appointments
 }
 
 const makeReqByDistrict = async (daysOfDataInEachReq, numOfRequests, district_id) => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_BASE_API}/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${district_id}&`
+  const url = `${base_url}/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${district_id}&`
   const appointments = await getAppointmentsForMultipleDates(numOfRequests, daysOfDataInEachReq, url)
 
   return appointments
