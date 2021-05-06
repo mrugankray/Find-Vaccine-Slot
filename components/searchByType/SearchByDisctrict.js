@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 
 import searchStateId from "../../utils/searchStateId"
 import searchDistrictId from "../../utils/searchDistrictId"
+import {base_url} from "../../utils/backendUrl"
 
 import { getCalenderByDistrict } from "../../actions/get_calender_by_type"
 
@@ -41,7 +42,7 @@ function SearchByDisctrict() {
 
     useEffect(() => {
         const getStateMetadata = async() => {
-            const statesRes = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_BASE_API}/api/v2/admin/location/states`)
+            const statesRes = await axios.get(`${base_url}/api/v2/admin/location/states`)
             setMetadata({...metadataState, states: statesRes.data.states})
         }
         getStateMetadata()
@@ -49,7 +50,7 @@ function SearchByDisctrict() {
 
     useEffect(() => {
         const getDiscrictMetadata = async() => {
-            const districtRes = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_BASE_API}/api/v2/admin/location/districts/${formData.selectedState}`)
+            const districtRes = await axios.get(`${base_url}/api/v2/admin/location/districts/${formData.selectedState}`)
             if(metadataState.states.length > 0) {
                 setMetadata({...metadataState, districts: districtRes.data.districts})
             }
