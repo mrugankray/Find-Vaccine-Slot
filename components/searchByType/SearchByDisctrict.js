@@ -50,7 +50,6 @@ function SearchByDisctrict() {
     useEffect(() => {
         const getDiscrictMetadata = async() => {
             const districtRes = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_BASE_API}/api/v2/admin/location/districts/${formData.selectedState}`)
-            console.log(districtRes.data.districts)
             if(metadataState.states.length > 0) {
                 setMetadata({...metadataState, districts: districtRes.data.districts})
             }

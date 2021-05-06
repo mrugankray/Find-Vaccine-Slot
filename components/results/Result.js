@@ -86,6 +86,7 @@ function Result() {
     // const searchTypeContext = useContext(SearchTypeContext)
 
     useEffect(() => {
+        // console.log(appointmentContext.appointmentState.centers)
         if(appointmentContext.appointmentState.centers.length > 0) {
             setSlots(searchForSlots(appointmentContext.appointmentState.centers))
         }
