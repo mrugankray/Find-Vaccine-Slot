@@ -83,10 +83,9 @@ function Result() {
     const classes = useStyles()
     const appointmentContext = useContext(AppointmentContext)
     const filterByAgeContext = useContext(FilterByAgeContext)
-    const searchTypeContext = useContext(SearchTypeContext)
+    // const searchTypeContext = useContext(SearchTypeContext)
 
     useEffect(() => {
-        console.log(appointmentContext.appointmentState)
         if(appointmentContext.appointmentState.centers.length > 0) {
             setSlots(searchForSlots(appointmentContext.appointmentState.centers))
         }
@@ -98,25 +97,13 @@ function Result() {
     useEffect(() => {
         if(filterByAgeContext.filterByAgeState !== "all") {
             setSlots(filterByAge(appointmentContext.appointmentState.centers, parseInt(filterByAgeContext.filterByAgeState)))
-            console.log(filterByAgeContext.filterByAgeState)
+            // console.log(filterByAgeContext.filterByAgeState)
         }
         else {
             setSlots(searchForSlots(appointmentContext.appointmentState.centers))
         }
         // console.log(filterByAgeContext)
     }, [filterByAgeContext])
-
-    useEffect(() => {
-        // setSlots([])
-    }, [searchTypeContext])
-
-    useEffect(() => {
-        console.log(searchTypeContext)
-    }, [searchTypeContext])
-
-    // useEffect(() => {
-    //     console.log(slotsState)
-    // }, [slotsState])
 
     return (
         <>

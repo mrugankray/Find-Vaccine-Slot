@@ -4,6 +4,7 @@ import Image from 'next/image'
 import NavBar from "../components/layouts/NavBar"
 import Tabs from "../components/layouts/Tabs"
 import SearchByPin from "../components/searchByType/SearchByPin"
+import SearchByDisctrict from "../components/searchByType/SearchByDisctrict"
 import Result from "../components/results/Result"
 import Filter from "../components/layouts/Filter"
 
@@ -57,11 +58,20 @@ export default function Home() {
         <SearchTypeContext.Provider value={{searchTypeState, setSearchType}}>
           <Tabs />
           <AppointmentContext.Provider value={{appointmentState, appointmentDispatch}}>
-            <Box display="flex" justifyContent="center" m={0} p={0}>
+            {/* 0 here means default tab/search by pin tab */}
+            {searchTypeState === 0 ? (
+              <Box display="flex" justifyContent="center" m={0} p={0}>
                 <Box p={0}>
-                      <SearchByPin /> 
+                  <SearchByPin /> 
                 </Box>
-            </Box>
+              </Box>
+            ) : (
+              <Box display="flex" justifyContent="center" m={0} p={0}>
+                <Box p={0}>
+                  <SearchByDisctrict /> 
+                </Box>
+              </Box>
+            )}
             <FilterByAgeContext.Provider value={{filterByAgeState, setFilterByAge}}>
               <Filter />
               <Result />

@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
-import { getCalenderByPin } from "../../actions/get_calender_by_pin"
+import { getCalenderByPin } from "../../actions/get_calender_by_type"
 
 import { AppointmentContext } from "../../pages/index"
 
@@ -23,11 +23,9 @@ function SearchByPin() {
     const classes = useStyles();
     const [pincodeState, setPincodeState] = useState(null)
     const appointmentContext = useContext(AppointmentContext)
-    // console.log(appointment)
 
     const handleSearchClick = async (pincode) => {
       const appointmentResults = await getCalenderByPin(pincode, appointmentContext)
-      // appointmentContext.appointmentDispatch({type: SET_APPOINTMENT, value: appointmentResults.data})
     }
 
     const handlePincodeChange = (e) => {
